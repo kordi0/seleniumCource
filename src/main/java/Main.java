@@ -14,5 +14,6 @@ public class Main {
         WebElement input = driver.findElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input"));
 
         input.click();
+        //github test
     }
 }
