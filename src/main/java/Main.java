@@ -2,8 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,16 +14,13 @@ public class Main {
         System.setProperty("webdriver.chrome.driver","C:\\webdriver\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
 
-        //неявное ожидание - устаревший метод
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        //неявное ожидание - современный метод
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get("https://www.avito.ru/smolensk/avtomobili");
 
-        //явное 10 с. ожидание элемента с id=123
-        WebElement element = (new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.id("123"))));
-        driver.get("https://google.com");
+        WebElement link = driver.findElement(By.xpath("//a[text()='Личные вещи'][1]"));
+        String par = link.getAttribute("href");
+
+        System.out.println(par);
 
 
     }
